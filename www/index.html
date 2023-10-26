@@ -156,7 +156,10 @@
     // 変数宣言
     var active = false;
     var startTime = 0;
+    var stoptime = 0;
     var period = 0;
+     var rest = 0;
+     var time = 0;
 
 
     
@@ -196,8 +199,9 @@
 
     // ButtonBがクリックされた時の処理
     function btnBClick(e){
-      active = false;
-        
+        stoptime = time;
+        active = false;
+      
         
     }
 
@@ -212,17 +216,16 @@
     }
 
     function btnDClick(e){
+        startTime = new Date();
       active = true;
-        
-        
     }
     
  
     // 繰り返し実行する処理
     function timer(){  
       if(active){
-        var time = parseInt( (new Date() - startTime)/1000 );
-        var rest = period - time;
+        time = parseInt(((new Date() - startTime)/1000)) + stoptime;
+        rest = period - time;
         $("#time").html("経過時間： " + time);
         $("#remain").html("残り時間： " + rest);
         analog(rest);
